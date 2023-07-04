@@ -30,6 +30,8 @@ type Auth {
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    saveBook
+    saveBook(data: [authors:[String!], description: String!, title:String!, bookId:ID!, image:String!, link:String!)]
     removeBook(bookId: ID!): Book
   }`
+
+  module.exports = typeDefs;

@@ -4,19 +4,6 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query : {
-          users: async () => {
-            return User.find().populate('savedBooks');
-          },
-          user: async (parent, { username }) => {
-            return User.findOne({ username }).populate('savedBooks');
-          },
-          books: async (parent, { username }) => {
-            const params = username ? { username } : {};
-            return Book.find(params).sort({ createdAt: -1 });
-          },
-          book: async (parent, { thoughtId }) => {
-            return Book.findOne({ _id: bookId });
-          },
           me: async (parent, args, context) => {
             if (context.user) {
               return User.findOne({ _id: context.user._id }).populate('savedBooks');
@@ -50,18 +37,17 @@ const resolvers = {
               return { token, user };
             },
 
-            saveBook: async (parent, { bookId }, context) => {
+            saveBook: async (parent, { data }, context) => {
               if (context.user) {
                 return Book.findOneAndUpdate(
-                  { _id: bookId },
+                  { _id: context.user._id },
                   {
-                    $addToSet: {
-                      savedBook: { body },
+                    $pusht: {
+                      savedBook: data,
                     },
                   },
                   {
                     new: true,
-                    runValidators: true,
                   }
                 );
               }
@@ -70,17 +56,12 @@ const resolvers = {
 
             deleteBook: async (parent, { bookId }, context) => {
               if (context.user) {
-                const book = await Book.findOneAndDelete({
-                  _id: bookId,
-                  thoughtAuthor: context.user.username,
-                });
-        
-                await User.findOneAndUpdate(
-                  { _id: context.user._id },
-                  { $pull: { books: book._id } }
+                const user = await User.findOneAndDelete(
+                 { _id: context.user._id },
+                  { $pull: {saveBooks: { bookId } } },
+                  { new: true }
                 );
-        
-                return book;
+                return user;
               }
               throw new AuthenticationError('You need to be logged in!');
             },

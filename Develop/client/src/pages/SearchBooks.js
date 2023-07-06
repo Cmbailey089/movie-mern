@@ -89,7 +89,7 @@ const SearchBooks = () => {
   };
 
   return (
-    <>
+    <div>
       <div className="text-light bg-dark p-5">
         <Container>
           <h1>Search for Books!</h1>
@@ -150,7 +150,7 @@ const SearchBooks = () => {
           })}
         </Row>
       </Container>
-    </>
+    </div>
   );
 };
 

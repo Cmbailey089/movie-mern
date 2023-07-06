@@ -47,7 +47,7 @@ const SignupForm = () => {
   };
 
   return (
-    <>
+    <div>
       {/* This is needed for the validation functionality above */}
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         {/* show alert if server response is bad */}
@@ -100,7 +100,7 @@ const SignupForm = () => {
           Submit
         </Button>
       </Form>
-    </>
+    </div>
   );
 };
 

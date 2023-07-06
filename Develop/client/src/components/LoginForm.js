@@ -45,7 +45,7 @@ const LoginForm = () => {
   };
 
   return (
-    <>
+    <div>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           { error && <div>Something went wrong with your login credentials!</div>}
@@ -82,7 +82,7 @@ const LoginForm = () => {
           Submit
         </Button>
       </Form>
-    </>
+    </div>
   );
 };
 

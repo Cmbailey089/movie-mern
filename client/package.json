@@ -14,7 +14,7 @@
     "react-bootstrap": "^2.7.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
@@ -36,5 +36,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "npm": "9.8.0",
+    "node": "18.16.1"
   }
 }

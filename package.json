@@ -18,5 +18,8 @@
   "engines": {
     "npm": "9.8.0",
     "node": "18.16.1"
+  },
+  "dependencies": {
+    "mongodb": "^5.7.0"
   }
 }
